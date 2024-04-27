@@ -1,0 +1,115 @@
+@import '../../constants.module.scss';
+
+.card {
+	width: 1200px;
+	height: auto;
+	padding: 40px 40px 48px 40px;
+	gap: 32px;
+	border-radius: 16px 0px 0px 0px;
+	opacity: 0px;
+	box-shadow: 0px 0px 16px 0px #1e1e1e1a;
+	box-sizing: border-box;
+	color: $main-text-color;
+}
+
+.content__header {
+	display: flex;
+	flex-direction: column;
+	a {
+		color: $main-text-color;
+		text-decoration: none;
+	}
+}
+
+.content__header__top {
+	display: flex;
+	flex-direction: row;
+	gap: 12px;
+	&__title {
+		font-size: 24px;
+		font-weight: 500;
+		line-height: 30px;
+		letter-spacing: -0.01em;
+		text-align: center;
+		align-self: center;
+		margin: 0;
+	}
+
+	&__logo {
+		width: auto;
+		height: 40px;
+	}
+}
+
+.content__header__bottom {
+	ul {
+		display: flex;
+		flex-direction: row;
+		list-style-type: none;
+		gap: 48px;
+		padding: 0;
+		li {
+			display: flex;
+			gap: 8px;
+			> :nth-child(1) {
+				color: $characteristic-color;
+				line-height: 23.2px;
+			}
+			> :nth-child(2) {
+				font-weight: 500;
+				line-height: 22.4px;
+			}
+		}
+	}
+}
+
+.description {
+	width: 760px;
+	p {
+		display: flex;
+		padding: 0;
+		text-align: left;
+		gap: 24px;
+	}
+}
+
+.requirements {
+	p {
+		padding: 0;
+		text-align: left;
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 22.4px;
+	}
+	ul {
+		text-align: left;
+		display: flex;
+		flex-direction: column;
+		padding-left: 25px;
+		gap: 8px;
+	}
+}
+
+.button {
+	width: auto;
+	height: 44px;
+	top: 29px;
+	left: 27px;
+	padding: 8px 32px 8px 32px;
+	gap: 8px;
+	border-radius: 4px;
+	opacity: 0px;
+	border: none;
+	margin-left: auto;
+	color: $button-text-color;
+}
+
+.button-respond {
+	background-color: $respond-button-color;
+}
+
+.button__more-info {
+	background: none;
+	color: $more-info-button-color;
+	border: none;
+}
