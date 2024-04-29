@@ -1,13 +1,14 @@
 import axios from 'axios'
 import {useState, useEffect} from 'react'
 
-import './App.css'
+import styles from './App.module.scss'
 import CardVacancy from './components/CardVacancy/CardVacancy'
 
 const url = 'https://api.hh.ru/vacancies'
 
 function App() {
 	const [vacancies, setVacancies] = useState([])
+	const [showenCardCount, setShowenCardCount] = useState(5)
 
 	useEffect(() => {
 		axios
@@ -18,36 +19,41 @@ function App() {
 			.catch((error) => {
 				console.error('Ошибка при получении данных:', error)
 			})
-		console.log('new render')
 	}, [])
-	console.log('vacancy0', vacancies)
-	let texts = []
-	let text
-	const stringProcessing = (str) => {
-		str.trim()
-	}
-	//vacancies.map((item) => texts.push(item.snippet.responsibility))
 
-	//console.log('texts', texts)
+	const createCard = (item, index) => {
+		return (
+			<CardVacancy
+				key={index}
+				title={item.name}
+				logoSrc={item.employer.logo_urls?.original ? item.employer.logo_urls.original : ''}
+				form={item.employment.name}
+				company={item.employer.name}
+				web={item.employer.alternate_url}
+				address={item.area.name}
+				description={item.snippet.requirement}
+				requirements={item.snippet.responsibility}></CardVacancy>
+		)
+	}
+
+	const clickShowMore = () => {
+		showenCardCount + 5 < vacancies.length
+			? setShowenCardCount((prev) => prev + 5)
+			: setShowenCardCount(vacancies.length)
+	}
+
 	return (
-		<div className='app'>
-			{vacancies.map((item, index) => (
-				<CardVacancy
-					key={index}
-					title={item.name}
-					logoSrc={item.employer.logo_urls?.original ? item.employer.logo_urls.original : ''}
-					form={item.employment.name}
-					company={item.employer.name}
-					web={item.employer.alternate_url}
-					address={item.area.name}
-					description={item.snippet.requirement}
-					requirements={item.snippet.responsibility}></CardVacancy>
-			))}
+		<div className={styles['app']}>
+			{vacancies.slice(0, showenCardCount).map((item, index) => createCard(item, index))}
+			{showenCardCount < vacancies.length ? (
+				<button className={styles['button']} onClick={clickShowMore}>
+					Show more
+				</button>
+			) : (
+				''
+			)}
 		</div>
 	)
-
-	/*
-  item.employer.logo_urls.hasOwnProperty('original')? item.employer.logo_urls.original: '' */
 }
 
 export default App

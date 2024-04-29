@@ -1,9 +1,11 @@
 @import '../../constants.module.scss';
 
 .card-short {
+	display: flex;
+	flex-direction: column;
 	width: 1200px;
 	max-height: 394px;
-	padding: 40px 40px 48px 40px;
+	padding: 40px;
 	gap: 32px;
 	border-radius: 16px;
 	opacity: 0px;
@@ -21,8 +23,11 @@
 }
 
 .content__header {
+	height: fit-content;
 	display: flex;
 	flex-direction: column;
+	gap: 24px;
+	align-content: space-between;
 	a {
 		color: $main-text-color;
 		text-decoration: none;
@@ -30,6 +35,7 @@
 }
 
 .content__header__top {
+	position: relative;
 	display: flex;
 	flex-direction: row;
 	gap: 12px;
@@ -72,25 +78,21 @@
 }
 
 .description {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
 	width: 760px;
-	p {
-		display: flex;
-		padding: 0;
-		text-align: left;
-		gap: 24px;
-	}
 }
 
 .requirements {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
 	p {
-		padding: 0;
-		text-align: left;
-		font-size: 16px;
 		font-weight: 500;
 		line-height: 22.4px;
 	}
 	ul {
-		text-align: left;
 		display: flex;
 		flex-direction: column;
 		padding-left: 25px;
@@ -101,19 +103,19 @@
 .button {
 	width: auto;
 	height: 44px;
-	top: 29px;
-	left: 27px;
+
 	padding: 8px 32px 8px 32px;
 	gap: 8px;
 	border-radius: 4px;
 	opacity: 0px;
 	border: none;
-	margin-left: auto;
 	color: $button-text-color;
 }
 
 .button-respond {
 	background-color: $respond-button-color;
+	position: absolute;
+	right: 0;
 }
 
 .button__more-info {
@@ -126,7 +128,7 @@
 
 .hidden-part-block {
 	position: relative;
-	padding-bottom: 2em;
+	padding-bottom: 32px;
 	display: flex;
 	position: absolute;
 	bottom: 0;
