@@ -1,15 +1,23 @@
 @import '../../constants.module.scss';
 
-.card {
+.card-short {
 	width: 1200px;
-	height: auto;
+	max-height: 394px;
 	padding: 40px 40px 48px 40px;
 	gap: 32px;
-	border-radius: 16px 0px 0px 0px;
+	border-radius: 16px;
 	opacity: 0px;
 	box-shadow: 0px 0px 16px 0px #1e1e1e1a;
 	box-sizing: border-box;
 	color: $main-text-color;
+	overflow: hidden;
+	position: relative;
+}
+
+.card-full {
+	height: auto;
+	overflow: visible;
+	max-height: fit-content;
 }
 
 .content__header {
@@ -109,7 +117,49 @@
 }
 
 .button__more-info {
+	padding: 0;
+	height: 24px;
 	background: none;
 	color: $more-info-button-color;
 	border: none;
+}
+
+.hidden-part-block {
+	position: relative;
+	padding-bottom: 2em;
+	display: flex;
+	position: absolute;
+	bottom: 0;
+	width: 1120px;
+	height: 160px;
+	align-items: flex-end;
+	justify-content: center;
+	background: linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0.05) 12.82%,
+		rgba(255, 255, 255, 0.98) 50.51%,
+		rgba(255, 255, 255, 0.98) 56.86%,
+		#ffffff 88.19%
+	);
+
+	> :first-child {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+}
+
+.button-expand-block {
+	display: flex;
+	width: 1120px;
+	justify-content: center;
+	> :first-child {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+}
+
+.more-info__icon path {
+	fill: $more-info-button-color;
 }

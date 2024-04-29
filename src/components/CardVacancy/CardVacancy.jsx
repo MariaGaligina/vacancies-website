@@ -1,9 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styles from './CardVacancy.module.scss'
+import ChevronDown from '../../assets/icons/chevronDown.svg?react'
+import ChevronUp from '../../assets/icons/chevronUp.svg?react'
 
 const CardVacancy = ({title, logoSrc, form, company, web, address, description, requirements}) => {
+	const [isExpanded, setIsExpanded] = useState(false)
+
+	const clickExpand = () => {
+		setIsExpanded(!isExpanded)
+		console.log('click', !isExpanded)
+	}
+
 	return (
-		<div className={styles['card']}>
+		<div className={`${styles['card-short']} ${isExpanded ? styles['card-full'] : ''}`}>
 			<div className={styles['content__header']}>
 				<div className={styles['content__header__top']}>
 					<h4 className={styles['content__header__top__title']}>{title}</h4>
@@ -47,7 +56,21 @@ const CardVacancy = ({title, logoSrc, form, company, web, address, description, 
 					</ul>
 				</div>
 			</div>
-			<button className={styles['button__more-info']}>Less details</button>
+			{isExpanded ? (
+				<div className={styles['button-expand-block']} onClick={clickExpand}>
+					<div>
+						<button className={styles['button__more-info']}>Less details</button>
+						<ChevronUp className={styles['more-info__icon']} />
+					</div>
+				</div>
+			) : (
+				<div className={styles['hidden-part-block']} onClick={clickExpand}>
+					<div>
+						<button className={styles['button__more-info']}>More details</button>
+						<ChevronDown className={styles['more-info__icon']} />
+					</div>
+				</div>
+			)}
 		</div>
 	)
 }
