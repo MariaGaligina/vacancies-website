@@ -3,6 +3,7 @@ import {useState, useEffect, useRef} from 'react'
 
 import styles from './App.module.scss'
 import CardVacancy from './components/CardVacancy/CardVacancy'
+import FeedbackForm from './components/FeedbackForm/FeedbackForm'
 import Close from './assets/icons/close.svg?react'
 
 const url = 'https://api.hh.ru/vacancies'
@@ -162,6 +163,7 @@ function App() {
 			) : (
 				''
 			)}
+			<FeedbackForm />
 		</div>
 	)
 }

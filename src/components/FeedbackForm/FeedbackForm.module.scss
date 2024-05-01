@@ -1,0 +1,23 @@
+@import '../../constants.module.scss';
+.button {
+	width: fit-content;
+	height: 44px;
+	padding: 8px 32px 8px 32px;
+	border-radius: 4px;
+	opacity: 0px;
+	border: none;
+	color: $button-text-color;
+	background-color: $blue;
+}
+input {
+	border: 1px solid $blue;
+	display: block;
+}
+
+.error-text {
+	color: red;
+}
+
+button:disabled {
+	border: 4px solid yellow;
+}
