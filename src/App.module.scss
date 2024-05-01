@@ -17,5 +17,17 @@
 	opacity: 0px;
 	border: none;
 	color: $button-text-color;
-	background-color: $respond-button-color;
+	background-color: $blue;
+}
+
+.button__search {
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 21px;
+	letter-spacing: 0.02em;
+	text-align: center;
+}
+
+select {
+	appearance: none;
 }
