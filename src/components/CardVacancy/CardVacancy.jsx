@@ -16,8 +16,10 @@ const CardVacancy = ({title, logoSrc, form, company, web, address, description, 
 			<div className={styles['content__header']}>
 				<div className={styles['content__header__top']}>
 					<h4 className={styles['content__header__top__title']}>{title}</h4>
-					<img className={styles['content__header__top__logo']} src={logoSrc}></img>
-					<button className={`${styles['button']} ${styles['button-respond']}`}>Respond</button>
+					<img className={styles['content__header__top__logo']} src={logoSrc} alt='not found'></img>
+					<a href={web}>
+						<button className={`${styles['button']} ${styles['button-respond']}`}>Respond</button>
+					</a>
 				</div>
 				<div className={styles['content__header__bottom']}>
 					<ul>
