@@ -14,7 +14,7 @@
 	box-shadow: 0px 0px 16px 0px #1e1e1e1a;
 	box-sizing: border-box;
 	color: $main-text-color;
-	overflow-y: hidden;
+	overflow: hidden;
 	position: relative;
 }
 
@@ -200,9 +200,12 @@
 	}
 
 	select {
-		width: 265px;
+		width: 288px;
 	}
-}
-
-@media (min-width: 1440px) {
+	.button-respond {
+		width: 233px;
+	}
+	.button__search {
+		width: 288px;
+	}
 }

@@ -150,9 +150,8 @@ option {
 }
 
 footer {
-	width: 100vw;
-	padding: 0;
-	background-color: $respond-button-color;
+	width: 100%;
+	background-color: $form-color;
 	bottom: 0;
 	margin: 0;
 }
@@ -185,6 +184,9 @@ footer {
 		div {
 			width: 288px;
 		}
+	}
+	main {
+		gap: 20px;
 	}
 }
 

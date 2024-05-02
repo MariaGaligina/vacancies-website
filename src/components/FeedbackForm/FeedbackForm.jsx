@@ -14,36 +14,9 @@ const FeedbackForm = () => {
 	const [phoneError, setPhoneError] = useState('Номер не должен быть пустым')
 	const [isDisabled, setIsDisabled] = useState(true)
 
-	//const [isCommentCorrect, setIsCommentCorrect] = useState(true)
-	/*
-	useEffect(() => {
-		console.log('disableEffect', isDisabled)
-		isNameCorrect && isEmailCorrect && isPhoneCorrect ? setIsDisabled(false) : setIsDisabled(true)
-		//console.log('disableEffect', isDisabled)
-		//console.log('kjhgfdsdfghjk')
-	}, [isNameCorrect, isEmailCorrect, isPhoneCorrect])*/
-
 	useEffect(() => {
 		nameError || emaiError || phoneError ? setIsDisabled(true) : setIsDisabled(false)
 	}, [nameError, emaiError, phoneError])
-
-	const checkButtonDisable = () => {
-		isNameCorrect && isEmailCorrect && isPhoneCorrect ? setIsDisabled(false) : setIsDisabled(true)
-		console.log(
-			'isDisablecheck',
-
-			isNameCorrect,
-			isEmailCorrect,
-			isPhoneCorrect,
-			name.length > 0,
-			email.length > 0,
-			phone.length > 0,
-			name.length,
-			email.length,
-			phone.length
-		)
-		console.log('disabledFunc', isDisabled)
-	}
 
 	const checkBlur = (event) => {
 		switch (event.currentTarget.name) {
@@ -62,9 +35,6 @@ const FeedbackForm = () => {
 	const checkNameValid = (event) => {
 		setName(event.target.value)
 		event.target.value.length > 0 ? setNameError('') : setNameError('Имя не пустое')
-		//console.log('nameValid', name)
-		//console.log('nameValid', isNameCorrect)
-		//console.log('disable', isDisabled)
 	}
 
 	const checkEmailValid = (event) => {
@@ -74,9 +44,6 @@ const FeedbackForm = () => {
 		event.target.value.length > 0 && emailRegExp.test(event.target.value)
 			? setEmailError('')
 			: setIsEmailCorrect('Некорректный email')
-		//console.log('emailValid', email)
-		//console.log('emailValid', isEmailCorrect)
-		//console.log('disable', isDisabled)
 	}
 
 	const checkPhoneValid = (event) => {
@@ -85,9 +52,6 @@ const FeedbackForm = () => {
 		!(isNaN(event.target.value) || event.target.value.includes('.'))
 			? setPhoneError('')
 			: setPhoneError('Номер может состоять только из цифр')
-		//console.log('phoneValid', phone)
-		//console.log('phoneValid', isPhoneCorrect)
-		//console.log('disable', isDisabled)
 	}
 
 	return (
@@ -107,7 +71,6 @@ const FeedbackForm = () => {
 						isNameCorrect ? '' : styles['feedback__input-error']
 					}`}
 				/>
-				{name}
 			</div>
 			<div className={styles['feedback__email']}>
 				<label htmlFor='email'>Email</label>
@@ -123,7 +86,6 @@ const FeedbackForm = () => {
 						isEmailCorrect ? '' : styles['feedback__input-error']
 					}`}
 				/>
-				{email}
 			</div>
 			<div className={styles['feedback__phone']}>
 				<label htmlFor='phone'>Phone number</label>
@@ -141,7 +103,6 @@ const FeedbackForm = () => {
 						isPhoneCorrect ? '' : styles['feedback__input-error']
 					}`}
 				/>
-				{phone}
 			</div>
 			<div className={styles['feedback__comment']}>
 				<label htmlFor='comment'>Comment</label>
@@ -154,17 +115,18 @@ const FeedbackForm = () => {
 					className={styles['feedback__comment-textarea']}
 				/>
 			</div>
-			<p>{comment}</p>
-			<button className={styles['button']} disabled={isDisabled}>
-				Send
-			</button>
-			<p>disabled {isDisabled}</p>
-			<p>
-				By clicking "Send" you confirm your consent to the
-				<a href='https://www.figma.com/file/nrUnG4nK4CoKxFAW8dnyLT/%D0%A1%D1%82%D0%B0%D0%B6%D0%B5%D1%80%D1%81%D0%BA%D0%B0%D1%8F-%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0-Frontend?type=design&node-id=14-1882&mode=design&t=8lvRb2lRhio8WOWd-0'>
-					processing of personal data
-				</a>
-			</p>
+			<div className={styles['form-bottom']}>
+				<button className={styles['button']} disabled={isDisabled}>
+					Send
+				</button>
+
+				<p>By clicking "Send" you confirm your consent to the</p>
+				<p>
+					<a href='https://www.figma.com/file/nrUnG4nK4CoKxFAW8dnyLT/%D0%A1%D1%82%D0%B0%D0%B6%D0%B5%D1%80%D1%81%D0%BA%D0%B0%D1%8F-%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0-Frontend?type=design&node-id=14-1882&mode=design&t=8lvRb2lRhio8WOWd-0'>
+						processing of personal data
+					</a>
+				</p>
+			</div>
 		</form>
 	)
 }

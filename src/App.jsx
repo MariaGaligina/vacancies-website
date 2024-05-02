@@ -111,6 +111,8 @@ function App() {
 		)
 	}
 
+	const options = ['Опция 1', 'Опция 2', 'Опция 3']
+
 	return (
 		<div className={styles['app']}>
 			<div className={styles['wrapper']}>
@@ -193,7 +195,12 @@ function App() {
 					</main>
 				</div>
 				<footer>
+					<div className={styles['footer-form']}>
+						<h2>Leave a request</h2>
+						<p>We will advise you and help you start a new project</p>
+					</div>
 					<FeedbackForm />
+					<div className={styles['footer-bottom']}></div>
 				</footer>
 			</div>
 		</div>
