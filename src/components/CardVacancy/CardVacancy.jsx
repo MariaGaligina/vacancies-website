@@ -14,9 +14,14 @@ const CardVacancy = ({title, logoSrc, form, company, web, address, description, 
 	return (
 		<div className={`${styles['card-short']} ${isExpanded ? styles['card-full'] : ''}`}>
 			<div className={styles['content__header']}>
-				<div className={styles['content__header__top']}>
-					<h4 className={styles['content__header__top__title']}>{title}</h4>
-					<img className={styles['content__header__top__logo']} src={logoSrc} alt='not found'></img>
+				<div>
+					<div className={styles['content__header__top']}>
+						<h4 className={styles['content__header__top__title']}>{title}</h4>
+						<img
+							className={styles['content__header__top__logo']}
+							src={logoSrc}
+							alt='not found'></img>
+					</div>
 					<a href={web}>
 						<button className={`${styles['button']} ${styles['button-respond']}`}>Respond</button>
 					</a>

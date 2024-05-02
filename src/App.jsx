@@ -4,6 +4,8 @@ import {useState, useEffect, useRef} from 'react'
 import styles from './App.module.scss'
 import CardVacancy from './components/CardVacancy/CardVacancy'
 import FeedbackForm from './components/FeedbackForm/FeedbackForm'
+import ChevronDown from './assets/icons/chevronDown.svg?react'
+import ChevronUp from './assets/icons/chevronUp.svg?react'
 import Close from './assets/icons/close.svg?react'
 
 const url = 'https://api.hh.ru/vacancies'
@@ -13,10 +15,11 @@ function App() {
 	const [isFiltered, setIsFiltered] = useState(false)
 	const [form, setForm] = useState('')
 	const [position, setPosition] = useState('')
-
 	const [showenCardCount, setShowenCardCount] = useState(5)
 	const [filteredVacancies, setFilteredVacancies] = useState([])
 	const [allPositions, setAllPositions] = useState([])
+	const [activeForm, setActiveForm] = useState(false)
+	const [activePosition, setActivePosition] = useState(false)
 
 	useEffect(() => {
 		axios
@@ -66,6 +69,15 @@ function App() {
 		setFilteredVacancies(vacanciesRef.current)
 	}
 
+	const checkFocus = (event) => {
+		if (event.target.name === 'form') setActiveForm(true)
+		else if (event.target.name === 'position') setActivePosition(true)
+	}
+	const checkBlur = (event) => {
+		if (event.target.name === 'form') setActiveForm(false)
+		else if (event.target.name === 'position') setActivePosition(false)
+	}
+
 	useEffect(() => {
 		//filterVacancies(form, position)
 		if (form || position) setIsFiltered(true)
@@ -101,69 +113,89 @@ function App() {
 
 	return (
 		<div className={styles['app']}>
-			<div className={styles['filers']}>
-				<form id='formFilter'>
-					<label>
-						Form
-						<select value={form} onChange={formChange}>
-							<option value='' disabled hidden>
-								Not selected
-							</option>
-							<option value='full'>Full time</option>
-							<option value='half'>Half time</option>
-							<option value='part'>Part time</option>
-							<option value='probation'>Internship</option>
-						</select>
-					</label>
+			<div className={styles['wrapper']}>
+				<div className={styles['top']}>
+					<header className={styles['filters']}>
+						<h1>List of vacancies</h1>
+						<form className={styles['filters-card']}>
+							<div>
+								<label>Form</label>
+								<select
+									value={form}
+									name='form'
+									onChange={formChange}
+									onFocus={(event) => checkFocus(event)}
+									onBlur={(event) => checkBlur(event)}>
+									<option value='' disabled hidden>
+										Not selected
+									</option>
+									<option value='full'>Full time</option>
+									<option value='half'>Half time</option>
+									<option value='part'>Part time</option>
+									<option value='probation'>Internship</option>
+								</select>
+							</div>
+							<div>
+								<label>Position</label>
+								<select
+									value={position}
+									name='position'
+									onChange={positionChange}
+									onFocus={(event) => checkFocus(event)}
+									onBlur={(event) => checkBlur(event)}>
+									<option value='' disabled hidden>
+										Not selected
+									</option>
+									{allPositions.map((item, index) => (
+										<option value={item} key={index}>
+											{item}
+										</option>
+									))}
+								</select>
+							</div>
 
-					<p>Selected value: {form}</p>
-
-					<label>
-						Position
-						<select value={position} onChange={positionChange}>
-							<option value='' disabled hidden>
-								Not selected
-							</option>
-							{allPositions.map((item, index) => (
-								<option value={item} key={index}>
-									{item}
-								</option>
-							))}
-						</select>
-					</label>
-					<p>Input value: {position}</p>
-					<button
-						className={`${styles['button']} ${styles['button__search']}`}
-						type='button'
-						onClick={clickSearch}>
-						Search
-					</button>
-				</form>
-
-				{isFiltered ? (
-					<>
-						<button onClick={clickClearFilters} type='reset' from='formFilter'>
-							<Close />
-							Clear filters
-						</button>
-					</>
-				) : (
-					''
-				)}
+							<button
+								className={`${styles['button']} ${styles['button__search']}`}
+								type='button'
+								onClick={clickSearch}>
+								Search
+							</button>
+						</form>
+						{isFiltered ? (
+							<div className={styles['close-block']}>
+								<Close />
+								<button
+									onClick={clickClearFilters}
+									type='reset'
+									className={`${styles['button']} ${styles['button__clear-filters']}`}>
+									Clear filters
+								</button>
+							</div>
+						) : (
+							''
+						)}
+					</header>
+					<main>
+						{filteredVacancies.length ? (
+							filteredVacancies
+								.slice(0, showenCardCount)
+								.map((item, index) => createCard(item, index))
+						) : (
+							<p>Нет подходящей выкансии</p>
+						)}
+						{showenCardCount < filteredVacancies.length ? (
+							<button className={styles['button']} onClick={clickShowMore}>
+								Show more
+							</button>
+						) : (
+							''
+						)}
+					</main>
+				</div>
+				<footer>
+					<FeedbackForm />
+				</footer>
 			</div>
-			{filteredVacancies.length ? (
-				filteredVacancies.slice(0, showenCardCount).map((item, index) => createCard(item, index))
-			) : (
-				<p>Нет подходящей выкансии</p>
-			)}
-			{showenCardCount < filteredVacancies.length ? (
-				<button className={styles['button']} onClick={clickShowMore}>
-					Show more
-				</button>
-			) : (
-				''
-			)}
-			<FeedbackForm />
 		</div>
 	)
 }
