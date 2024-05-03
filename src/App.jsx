@@ -195,12 +195,17 @@ function App() {
 					</main>
 				</div>
 				<footer>
-					<div className={styles['footer-form']}>
-						<h2>Leave a request</h2>
-						<p>We will advise you and help you start a new project</p>
-					</div>
 					<FeedbackForm />
-					<div className={styles['footer-bottom']}></div>
+					<div className={styles['footer-bottom']}>
+						<div className={styles['footer-bottom__contacts']}>
+							<p>+7 499 391-66-69</p>
+							<p>mail@greensight.ru</p>
+						</div>
+						<div className={styles['footer-bottom__address']}>
+							<p>322A, 2nd Floor, Zelenograd, Moscow, Russia</p>
+							<a>Directions</a>
+						</div>
+					</div>
 				</footer>
 			</div>
 		</div>

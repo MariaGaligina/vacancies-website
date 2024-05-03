@@ -1,5 +1,36 @@
 @import '../../constants.module.scss';
+
 .feedback {
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	align-items: center;
+	padding: 64px 120px 88px 120px;
+}
+
+.feedback-header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	h2 {
+		font-size: 34px;
+		font-weight: 500;
+		line-height: 42.5px;
+		letter-spacing: -0.01em;
+		text-align: center;
+	}
+	p {
+		font-family: Roboto;
+		font-size: 18px;
+		line-height: 25.2px;
+		text-align: center;
+	}
+}
+
+.feedback__fields {
 	width: fit-content;
 	display: flex;
 	flex-direction: column;
@@ -8,17 +39,37 @@
 	justify-content: center;
 }
 
-.button {
-	width: 65%;
-	height: 44px;
+.feedback-bottom {
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	align-items: center;
+	justify-content: center;
+	p {
+		font-weight: 400;
+		line-height: 23.2px;
+		text-align: center;
+		a {
+			padding-bottom: 4px;
+			color: $blue;
+			border-bottom: 1px solid $blue opacity(0.2);
+		}
+	}
+}
 
+.button {
+	width: 386px;
+	max-width: 40vw;
 	height: 44px;
 	padding: 8px 32px 8px 32px;
 	border-radius: 4px;
-
 	border: none;
 	color: $button-text-color;
 	background-color: $blue;
+}
+button:disabled {
+	opacity: 0.5;
 }
 input {
 	padding: 4px 12px 4px 12px;
@@ -52,9 +103,6 @@ label {
 	line-height: 15px;
 }
 
-button:disabled {
-	opacity: 0.5;
-}
 .feedback__name,
 .feedback__email,
 .feedback__phone,
@@ -62,23 +110,6 @@ button:disabled {
 	display: flex;
 	flex-direction: column;
 	gap: 4px;
-}
-.form-bottom {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 16px;
-	p {
-		font-weight: 400;
-		line-height: 23.2px;
-		text-align: center;
-		a {
-			padding-bottom: 4px;
-			color: $blue;
-			border-bottom: 1px solid $blue opacity(0.2);
-		}
-	}
 }
 
 @media (max-width: 320px) {

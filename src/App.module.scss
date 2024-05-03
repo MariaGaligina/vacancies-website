@@ -14,16 +14,16 @@
 }
 
 body {
+	width: 100%;
 	margin: 0;
 	padding: 0;
 	display: flex;
 	justify-content: center;
-	min-width: 300px;
-	min-height: 100vh;
 	font-size: 16px;
 	font-weight: 400;
 	line-height: 23.2px;
 	text-align: left;
+	overflow-x: hidden;
 }
 
 h1 {
@@ -42,6 +42,7 @@ h1 {
 .wrapper {
 	width: 100%;
 	display: flex;
+	min-height: 100vh;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
@@ -49,14 +50,14 @@ h1 {
 
 .top {
 	max-width: 1440px;
-
-	padding: 64px 120px 104px 120px;
+	padding: 64px 120px 104px;
 	display: flex;
 	flex-direction: column;
 	gap: 48px;
 }
 
 main {
+	max-width: 100vww;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -80,7 +81,6 @@ main {
 	}
 }
 label {
-	//display: block;
 	font-size: 12px;
 	font-weight: 500;
 	line-height: 15px;
@@ -150,16 +150,64 @@ option {
 }
 
 footer {
-	width: 100%;
+	width: 100vw;
 	background-color: $form-color;
 	bottom: 0;
 	margin: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	h2,
+	p {
+		width: fit-content;
+		word-wrap: normal;
+	}
+}
+
+.footer-bottom {
+	width: 100vw;
+	min-height: 140px;
+	padding: 40px 120px;
+	color: $button-text-color;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: $respond-button-color;
+	flex-wrap: wrap;
+
+	.footer-bottom__contacts {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		p {
+			font-size: 18px;
+			font-weight: 500;
+			line-height: 25.2px;
+			text-align: left;
+		}
+	}
+	.footer-bottom__address {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-content: flex-end;
+
+		gap: 8px;
+		p,
+		a {
+			line-height: 23.2px;
+		}
+		a {
+			border-bottom: 1px solid $button-text-color;
+			width: fit-content;
+			align-self: flex-end;
+		}
+	}
 }
 
 @media only screen and (max-width: 320px) {
 	h1 {
-		//styleName: mobile/h1;
-		font-family: Roboto;
 		font-size: 34px;
 		line-height: 40.8px;
 		letter-spacing: -0.01em;
@@ -171,6 +219,10 @@ footer {
 
 	.wrapper {
 		max-width: 320px;
+		display: flex;
+		flex-direction: column;
+		align-items: space-between;
+		justify-content: space-between;
 	}
 	.top {
 		padding: 32px 16px 32px 16px;
@@ -188,7 +240,12 @@ footer {
 	main {
 		gap: 20px;
 	}
-}
 
-@media (min-width: 1440px) {
+	.footer-bottom {
+		padding: 32px 16px;
+
+		.footer-bottom__address > a {
+			align-self: flex-start;
+		}
+	}
 }

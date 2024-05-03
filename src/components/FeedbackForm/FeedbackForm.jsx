@@ -56,66 +56,74 @@ const FeedbackForm = () => {
 
 	return (
 		<form className={styles['feedback']}>
-			<div className={styles['feedback__name']}>
-				<label htmlFor='name'>Your name</label>
-				{!isNameCorrect && nameError && <span className={styles['error-text']}>{nameError}</span>}
-				<input
-					type='text'
-					name='name'
-					id='name'
-					value={name}
-					onChange={(event) => checkNameValid(event)}
-					onBlur={(event) => checkBlur(event)}
-					placeholder='Please introduce yourself'
-					className={`${styles['feedback__name-input']} ${
-						isNameCorrect ? '' : styles['feedback__input-error']
-					}`}
-				/>
+			<div className={styles['feedback-header']}>
+				<h2>Leave a request</h2>
+				<p>We will advise you and help you start a new project</p>
 			</div>
-			<div className={styles['feedback__email']}>
-				<label htmlFor='email'>Email</label>
-				{!isEmailCorrect && emaiError && <span className={styles['error-text']}>{emaiError}</span>}
-				<input
-					name='email'
-					id='email'
-					value={email}
-					onChange={(event) => checkEmailValid(event)}
-					onBlur={(event) => checkBlur(event)}
-					placeholder='ivanov@gmail.com'
-					className={`${styles['feedback__input']} ${
-						isEmailCorrect ? '' : styles['feedback__input-error']
-					}`}
-				/>
+			<div className={styles['feedback__fields']}>
+				<div className={styles['feedback__name']}>
+					<label htmlFor='name'>Your name</label>
+					{!isNameCorrect && nameError && <span className={styles['error-text']}>{nameError}</span>}
+					<input
+						type='text'
+						name='name'
+						id='name'
+						value={name}
+						onChange={(event) => checkNameValid(event)}
+						onBlur={(event) => checkBlur(event)}
+						placeholder='Please introduce yourself'
+						className={`${styles['feedback__name-input']} ${
+							isNameCorrect ? '' : styles['feedback__input-error']
+						}`}
+					/>
+				</div>
+				<div className={styles['feedback__email']}>
+					<label htmlFor='email'>Email</label>
+					{!isEmailCorrect && emaiError && (
+						<span className={styles['error-text']}>{emaiError}</span>
+					)}
+					<input
+						name='email'
+						id='email'
+						value={email}
+						onChange={(event) => checkEmailValid(event)}
+						onBlur={(event) => checkBlur(event)}
+						placeholder='ivanov@gmail.com'
+						className={`${styles['feedback__input']} ${
+							isEmailCorrect ? '' : styles['feedback__input-error']
+						}`}
+					/>
+				</div>
+				<div className={styles['feedback__phone']}>
+					<label htmlFor='phone'>Phone number</label>
+					{!isPhoneCorrect && phoneError && (
+						<span className={styles['error-text']}>{phoneError}</span>
+					)}
+					<input
+						name='phone'
+						id='phone'
+						value={phone}
+						onChange={(event) => checkPhoneValid(event)}
+						onBlur={(event) => checkBlur(event)}
+						placeholder='+7 (999) 000 00 00'
+						className={`${styles['feedback__input']} ${
+							isPhoneCorrect ? '' : styles['feedback__input-error']
+						}`}
+					/>
+				</div>
+				<div className={styles['feedback__comment']}>
+					<label htmlFor='comment'>Comment</label>
+					<textarea
+						name='comment'
+						id='comment'
+						value={comment}
+						onChange={(event) => setComment(event.target.value)}
+						placeholder='Message text'
+						className={styles['feedback__comment-textarea']}
+					/>
+				</div>
 			</div>
-			<div className={styles['feedback__phone']}>
-				<label htmlFor='phone'>Phone number</label>
-				{!isPhoneCorrect && phoneError && (
-					<span className={styles['error-text']}>{phoneError}</span>
-				)}
-				<input
-					name='phone'
-					id='phone'
-					value={phone}
-					onChange={(event) => checkPhoneValid(event)}
-					onBlur={(event) => checkBlur(event)}
-					placeholder='+7 (999) 000 00 00'
-					className={`${styles['feedback__input']} ${
-						isPhoneCorrect ? '' : styles['feedback__input-error']
-					}`}
-				/>
-			</div>
-			<div className={styles['feedback__comment']}>
-				<label htmlFor='comment'>Comment</label>
-				<textarea
-					name='comment'
-					id='comment'
-					value={comment}
-					onChange={(event) => setComment(event.target.value)}
-					placeholder='Message text'
-					className={styles['feedback__comment-textarea']}
-				/>
-			</div>
-			<div className={styles['form-bottom']}>
+			<div className={styles['feedback-bottom']}>
 				<button className={styles['button']} disabled={isDisabled}>
 					Send
 				</button>

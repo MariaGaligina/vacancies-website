@@ -5,7 +5,8 @@
 	display: flex;
 	flex-direction: column;
 	max-width: 1200px;
-	width: 83vw;
+	width: calc(100vw - 240px);
+	min-width: 288px;
 	max-height: 394px;
 	padding: 40px;
 	gap: 32px;
